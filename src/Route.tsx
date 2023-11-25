@@ -1,3 +1,3 @@
 export function Route() {
-  return <>Hello, simple feedback system!</>;
+  return <>Hello, simple feedback system!</>
 }
