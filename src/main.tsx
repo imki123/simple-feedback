@@ -3,8 +3,12 @@ import ReactDOM from 'react-dom/client'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { MainPage } from './pages/main/MainPage'
-import { routes } from './pages/routes'
 import { FeedbackPage } from './pages/feedback/FeedbackPage'
+
+export const routes = {
+  root: '/',
+  feedback: '/feedback',
+}
 
 const router = createBrowserRouter(
   [
