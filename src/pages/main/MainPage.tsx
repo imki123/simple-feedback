@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import { routes } from '../../main'
-import { toFixed1 } from '../../utils'
+import { round, toFixed } from '../../utils'
 
 export function MainPage() {
   const users = [
@@ -26,18 +26,18 @@ export function MainPage() {
     <>
       <header>
         <div className="flex items-center">
-          <div>Simple Feedback System</div>
+          <h1 className="text-3xl font-bold">Simple Feedback System</h1>
         </div>
       </header>
 
-      <main>
+      <main className="py-5">
         <ul className="list-disc pl-5">
           {users.map((user) => (
             <li key={user.id}>
               <Link to={`${routes.feedback}/?userId=${user.id}`}>
                 {user.name} ({user.email}) / 평균점수:{' '}
-                {toFixed1(user.averageScore)} ({user.scoreCount}개) / 피드백:{' '}
-                {user.feedbackCount}개
+                {toFixed(round(user.averageScore))} ({user.scoreCount}개) /
+                피드백: {user.feedbackCount}개
               </Link>
             </li>
           ))}

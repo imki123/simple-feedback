@@ -25,3 +25,7 @@ button:hover {
   cursor: pointer;
   opacity: 0.6;
 }
+
+#root {
+  @apply max-w-[600px] m-auto;
+}
