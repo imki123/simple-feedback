@@ -23,8 +23,18 @@ export function BeforeNextButtons({
 
   return (
     <>
-      <Link to={`${routes.feedback}/?userId=${beforeUser.id}`}>이전 유저</Link>
-      <Link to={`${routes.feedback}/?userId=${nextUser.id}`}>다음 유저</Link>
+      <Link
+        to={`${routes.feedback}/?userId=${beforeUser.id}`}
+        className="fixed bottom-5 left-[calc(50%-300px)] z-10 translate-x-[-50%] transform whitespace-nowrap rounded bg-blue-300 px-4 py-2"
+      >
+        이전
+      </Link>
+      <Link
+        to={`${routes.feedback}/?userId=${nextUser.id}`}
+        className="fixed bottom-5 left-[calc(50%+300px)] z-10 translate-x-[-50%] transform whitespace-nowrap rounded bg-blue-300 px-4 py-2"
+      >
+        다음
+      </Link>
     </>
   )
 }

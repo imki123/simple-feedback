@@ -69,7 +69,7 @@ export function FeedbackPage() {
 
       <BeforeNextButtons users={users} userId={userId} />
 
-      <main className="py-5 flex flex-col gap-6">
+      <main className="flex flex-col gap-6 py-5">
         <UserSection user={user} />
 
         <QuestionSection

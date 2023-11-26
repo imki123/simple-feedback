@@ -27,7 +27,7 @@ export function QuestionSection({
             )
             summary = (
               <span>
-                <span className="bg-green-200 py-1 px-2 rounded-lg font-bold text-green-800">
+                <span className="rounded-lg bg-green-200 px-2 py-1 font-bold text-green-800">
                   {averageScore}점
                 </span>{' '}
                 ({questionAnswersById.length}개)
@@ -40,7 +40,7 @@ export function QuestionSection({
               <div>
                 <strong>{question.content}</strong> {summary}
                 <form
-                  className="flex gap-4 items-center"
+                  className="flex items-center gap-4"
                   onSubmit={(e) => {
                     e.preventDefault()
                     alert('점수를 저장했습니다.')
@@ -49,7 +49,7 @@ export function QuestionSection({
                   <ul className="flex gap-2">
                     {[1, 2, 3, 4, 5].map((score) => (
                       <li key={score}>
-                        <label className="cursor-pointer hover:opacity-60 px-2 py-1 bg-green-200 rounded-lg">
+                        <label className="cursor-pointer rounded-lg bg-green-200 px-2 py-1 hover:opacity-60">
                           <input
                             type="radio"
                             name={`question_${question.id}`}
@@ -60,7 +60,7 @@ export function QuestionSection({
                       </li>
                     ))}
                   </ul>
-                  <button className="bg-blue-200 px-2 py-1 rounded-lg">
+                  <button className="rounded-lg bg-blue-200 px-2 py-1">
                     내 점수 저장
                   </button>
                 </form>
@@ -76,7 +76,7 @@ export function QuestionSection({
     <div>
       <h2 className="text-2xl font-bold">
         설문{' '}
-        <span className="font-normal text-base">
+        <span className="text-base font-normal">
           1점(매우 그렇지 않다.) ~ 5점(매우 그렇다.)
         </span>
       </h2>

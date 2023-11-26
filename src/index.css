@@ -27,5 +27,5 @@ button:hover {
 }
 
 #root {
-  @apply max-w-[600px] m-auto;
+  @apply m-auto max-w-[600px];
 }
