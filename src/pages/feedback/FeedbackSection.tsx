@@ -15,7 +15,7 @@ export function FeedbackSection({
     <div>
       <h2 className="text-2xl font-bold">
         피드백{' '}
-        <span className="text-lg font-normal">
+        <span className="rounded-lg bg-blue-200 px-2 py-1 text-lg font-bold text-blue-800">
           {filteredFeedbacks.length}개
         </span>
       </h2>

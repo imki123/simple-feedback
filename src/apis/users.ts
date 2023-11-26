@@ -21,6 +21,13 @@ const users: UserType[] = [
     team: 'FaceWallet',
     job: 'FE Developer',
   },
+  {
+    id: 3,
+    name: 'Hoodie3',
+    email: 'hoodie3@haechi.io',
+    team: '피플팀',
+    job: '총무',
+  },
 ]
 
 export const getUsers = async (): Promise<UserType[]> => {
