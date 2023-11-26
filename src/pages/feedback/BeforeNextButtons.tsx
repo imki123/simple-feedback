@@ -5,9 +5,11 @@ import { routes } from '../../main'
 export function BeforeNextButtons({
   users,
   userId,
+  setMoundFlagFalse,
 }: {
   users: UserType[]
   userId: number
+  setMoundFlagFalse: () => void
 }) {
   const currentUserIndex = users.findIndex((user) => user.id === userId)
   const beforeUser = users[currentUserIndex - 1]
@@ -26,12 +28,14 @@ export function BeforeNextButtons({
       <Link
         to={`${routes.feedback}/?userId=${beforeUser.id}`}
         className="fixed bottom-5 left-[calc(50%-300px)] z-10 translate-x-[-50%] transform whitespace-nowrap rounded bg-blue-300 px-4 py-2"
+        onClick={() => setMoundFlagFalse()}
       >
         이전
       </Link>
       <Link
         to={`${routes.feedback}/?userId=${nextUser.id}`}
         className="fixed bottom-5 left-[calc(50%+300px)] z-10 translate-x-[-50%] transform whitespace-nowrap rounded bg-blue-300 px-4 py-2"
+        onClick={() => setMoundFlagFalse()}
       >
         다음
       </Link>

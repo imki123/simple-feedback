@@ -2,23 +2,41 @@ import { Link } from 'react-router-dom'
 import { routes } from '../../main'
 import { round, toFixed } from '../../utils'
 import { Header } from '../../components/Header'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { UserType, getUsers } from '../../apis/users'
+import { FeedbackType, getFeedbacks } from '../../apis/feedbacks'
+import {
+  QuestionAnswerType,
+  getQuestionAnswers,
+} from '../../apis/questionAnswers'
 
 export function MainPage() {
   const [users, setUsers] = useState<UserType[]>([])
-  const mountFlagRef = useRef(false)
+  const [questionAnswers, setQuestionAnswers] = useState<QuestionAnswerType[]>(
+    [],
+  )
+  const [feedbacks, setFeedbacks] = useState<FeedbackType[]>([])
+  const [mountFlag, setMountFlag] = useState(false)
 
   useEffect(() => {
-    async function fetchUsers() {
-      const users = await getUsers()
-      setUsers(users)
-      mountFlagRef.current = true
-    }
-    fetchUsers()
-  })
+    async function fetchAllData() {
+      setMountFlag(false)
 
-  if (mountFlagRef.current === false) {
+      // high priority data
+      const allData = await Promise.all([
+        getUsers(),
+        getQuestionAnswers(),
+        getFeedbacks(),
+      ])
+      setUsers(allData[0])
+      setQuestionAnswers(allData[1])
+      setFeedbacks(allData[2])
+      setMountFlag(true)
+    }
+    fetchAllData()
+  }, [])
+
+  if (!mountFlag) {
     return (
       <>
         <Header title="Simple Feedback System" />
@@ -32,15 +50,32 @@ export function MainPage() {
       <Header />
 
       <main className="py-5">
-        <ul className="list-disc pl-5">
-          {users.map((user) => (
-            <li key={user.id}>
-              <Link to={`${routes.feedback}/?userId=${user.id}`}>
-                {user.name} ({user.email}) / 평균점수: {toFixed(round(3.0))} (
-                {5}개) / 피드백: {3}개
-              </Link>
-            </li>
-          ))}
+        <ul className="list-disc pl-5 text-lg">
+          {users.map((user) => {
+            const questionAnswersByUser = questionAnswers.filter(
+              (questionAnswer) => questionAnswer.userId === user.id,
+            )
+            const sumScoreByUser = questionAnswersByUser.reduce((acc, cur) => {
+              return acc + cur.score
+            }, 0)
+            const averageScoreByUser =
+              questionAnswersByUser.length > 0
+                ? toFixed(round(sumScoreByUser / questionAnswersByUser.length))
+                : '-'
+            const feedbacksByUser = feedbacks.filter(
+              (feedback) => feedback.userId === user.id,
+            )
+
+            return (
+              <li key={user.id}>
+                <Link to={`${routes.feedback}/?userId=${user.id}`}>
+                  {user.name} ({user.email}) / 평균점수: {averageScoreByUser} (
+                  {questionAnswersByUser.length}개) / 피드백:{' '}
+                  {feedbacksByUser.length}개
+                </Link>
+              </li>
+            )
+          })}
         </ul>
       </main>
     </>

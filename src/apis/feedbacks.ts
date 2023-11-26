@@ -18,6 +18,12 @@ const feedbacks: FeedbackType[] = [
     answerUserId: 1,
     comment: '함께 성장 할 수 있는 동료입니다.',
   },
+  {
+    id: 2,
+    userId: 2,
+    answerUserId: 1,
+    comment: '명확한 목적을 가지고 미팅을 하면 더 좋을 것 같아요.',
+  },
 ]
 
 export async function getFeedbacks(): Promise<FeedbackType[]> {

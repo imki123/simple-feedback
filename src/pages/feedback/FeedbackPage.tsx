@@ -2,7 +2,7 @@ import { useSearchParams } from 'react-router-dom'
 import { UserType, getUser, getUsers } from '../../apis/users'
 import { Header } from '../../components/Header'
 import { routes } from '../../main'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { QuestionType, getQuestions } from '../../apis/questions'
 import { FeedbackType, getFeedbacks } from '../../apis/feedbacks'
 import {
@@ -17,7 +17,7 @@ import { BeforeNextButtons } from './BeforeNextButtons'
 export function FeedbackPage() {
   const [searchParams] = useSearchParams()
   const userId = Number(searchParams.get('userId'))
-  const mountFlagRef = useRef(false)
+  const [mountFlag, setMountFlag] = useState(false)
 
   // high priority data
   const [user, setUser] = useState<UserType | undefined | null>(undefined)
@@ -32,6 +32,7 @@ export function FeedbackPage() {
 
   useEffect(() => {
     async function fetchAllData() {
+      setMountFlag(false)
       // lazy data
       getQuestionAnswersByUser(userId).then(setQuestionAnswers)
       getUsers().then(setUsers)
@@ -45,12 +46,12 @@ export function FeedbackPage() {
       setUser(allData[0])
       setQuestions(allData[1])
       setFeedbacks(allData[2])
-      mountFlagRef.current = true
+      setMountFlag(true)
     }
     fetchAllData()
   }, [searchParams])
 
-  if (mountFlagRef.current === false) {
+  if (mountFlag === false) {
     return <Header backPath={routes.root} title="Loading..." />
   }
 
@@ -67,8 +68,6 @@ export function FeedbackPage() {
     <>
       <Header backPath={routes.root} title={`${user.name} 피드백`} />
 
-      <BeforeNextButtons users={users} userId={userId} />
-
       <main className="flex flex-col gap-6 py-5">
         <UserSection user={user} />
 
@@ -77,8 +76,14 @@ export function FeedbackPage() {
           questionAnswers={questionAnswers}
         />
 
-        <FeedbackSection feedbacks={feedbacks} />
+        <FeedbackSection feedbacks={feedbacks} userId={userId} />
       </main>
+
+      <BeforeNextButtons
+        users={users}
+        userId={userId}
+        setMoundFlagFalse={() => setMountFlag(false)}
+      />
     </>
   )
 }

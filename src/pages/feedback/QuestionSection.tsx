@@ -9,28 +9,35 @@ export function QuestionSection({
   questions: QuestionType[]
   questionAnswers: QuestionAnswerType[]
 }) {
-  const QuestionAnswersList = () => {
-    return (
+  return (
+    <div>
+      <h2 className="text-2xl font-bold">
+        설문{' '}
+        <span className="text-base font-normal">
+          1점(매우 그렇지 않다.) ~ 5점(매우 그렇다.)
+        </span>
+      </h2>
+
       <ol className="list-decimal pl-5">
         {questions.map((question) => {
           // 설문 문항 별 평균점수, 개수 구하기
-          const questionAnswersById = questionAnswers.filter(
+          const questionAnswersByQuestionId = questionAnswers.filter(
             (answer) => answer.questionId === question.id,
           )
           let summary = <span></span>
-          if (questionAnswersById.length !== 0) {
-            const sumScore = questionAnswersById.reduce((acc, cur) => {
+          if (questionAnswersByQuestionId.length !== 0) {
+            const sumScore = questionAnswersByQuestionId.reduce((acc, cur) => {
               return acc + cur.score
             }, 0)
             const averageScore = toFixed(
-              round(sumScore / questionAnswersById.length),
+              round(sumScore / questionAnswersByQuestionId.length),
             )
             summary = (
               <span>
                 <span className="rounded-lg bg-green-200 px-2 py-1 font-bold text-green-800">
                   {averageScore}점
                 </span>{' '}
-                ({questionAnswersById.length}개)
+                ({questionAnswersByQuestionId.length}개)
               </span>
             )
           }
@@ -69,18 +76,6 @@ export function QuestionSection({
           )
         })}
       </ol>
-    )
-  }
-
-  return (
-    <div>
-      <h2 className="text-2xl font-bold">
-        설문{' '}
-        <span className="text-base font-normal">
-          1점(매우 그렇지 않다.) ~ 5점(매우 그렇다.)
-        </span>
-      </h2>
-      <QuestionAnswersList />
     </div>
   )
 }
