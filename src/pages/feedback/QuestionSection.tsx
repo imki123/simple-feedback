@@ -47,13 +47,13 @@ export function QuestionSection({
               <div>
                 <strong>{question.content}</strong> {summary}
                 <form
-                  className="flex items-center gap-4"
+                  className="mb-4 mt-2 flex items-center gap-4"
                   onSubmit={(e) => {
                     e.preventDefault()
                     alert('점수를 저장했습니다.')
                   }}
                 >
-                  <ul className="flex gap-2">
+                  <ul className="flex flex-wrap gap-2">
                     {[1, 2, 3, 4, 5].map((score) => (
                       <li key={score}>
                         <label className="cursor-pointer rounded-lg bg-green-200 px-2 py-1 hover:opacity-60">
@@ -67,8 +67,8 @@ export function QuestionSection({
                       </li>
                     ))}
                   </ul>
-                  <button className="rounded-lg bg-blue-200 px-2 py-1">
-                    내 점수 저장
+                  <button className="whitespace-nowrap rounded-lg bg-blue-200 px-2 py-1">
+                    저장
                   </button>
                 </form>
               </div>
