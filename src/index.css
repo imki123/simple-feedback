@@ -20,8 +20,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-a:hover,
-button:hover {
+a:active,
+button:active {
   cursor: pointer;
   opacity: 0.6;
 }

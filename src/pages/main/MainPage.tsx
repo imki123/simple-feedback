@@ -49,7 +49,7 @@ export function MainPage() {
     <>
       <Header />
 
-      <main className="py-5">
+      <main className="px-2 py-5">
         <ul className="list-disc pl-5 text-lg">
           {users.map((user) => {
             const questionAnswersByUser = questionAnswers.filter(

@@ -27,14 +27,14 @@ export function BeforeNextButtons({
     <>
       <Link
         to={`${routes.feedback}/?userId=${beforeUser.id}`}
-        className="fixed bottom-5 left-[calc(50%-300px)] z-10 translate-x-[-50%] transform whitespace-nowrap rounded bg-blue-300 px-4 py-2"
+        className="left:0 fixed bottom-2 z-10 transform whitespace-nowrap rounded bg-blue-300 px-4 py-2 sm:left-[calc(50%-300px)] sm:translate-x-[-50%]"
         onClick={() => setMoundFlagFalse()}
       >
         이전
       </Link>
       <Link
         to={`${routes.feedback}/?userId=${nextUser.id}`}
-        className="fixed bottom-5 left-[calc(50%+300px)] z-10 translate-x-[-50%] transform whitespace-nowrap rounded bg-blue-300 px-4 py-2"
+        className="fixed bottom-2 right-0 z-10 transform whitespace-nowrap rounded bg-blue-300 px-4 py-2 sm:right-[calc(50%-300px)] sm:translate-x-[-50%]"
         onClick={() => setMoundFlagFalse()}
       >
         다음

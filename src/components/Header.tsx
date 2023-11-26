@@ -23,12 +23,12 @@ export function Header({
 
         {backPath && (
           // 특정 경로로 이동하는 뒤로가기 버튼
-          <Link to={backPath} className="text-3xl">
+          <Link to={backPath} className="text-2xl sm:text-3xl">
             {'<'}
           </Link>
         )}
 
-        <h1 className="text-3xl font-bold">{title}</h1>
+        <h1 className="text-2xl font-bold sm:text-3xl">{title}</h1>
       </div>
     </header>
   )

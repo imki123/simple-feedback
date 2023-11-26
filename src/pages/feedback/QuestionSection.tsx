@@ -56,7 +56,7 @@ export function QuestionSection({
                   <ul className="flex flex-wrap gap-2">
                     {[1, 2, 3, 4, 5].map((score) => (
                       <li key={score}>
-                        <label className="cursor-pointer rounded-lg bg-green-200 px-2 py-1 hover:opacity-60">
+                        <label className="cursor-pointer rounded-lg bg-green-200 px-2 py-1 active:opacity-60">
                           <input
                             type="radio"
                             name={`question_${question.id}`}
