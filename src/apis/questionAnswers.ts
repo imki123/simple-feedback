@@ -28,6 +28,27 @@ const questionAnswers: QuestionAnswerType[] = [
     answerUserId: 3,
     score: 1,
   },
+  {
+    id: 1,
+    userId: 1,
+    questionId: 2,
+    answerUserId: 2,
+    score: 3,
+  },
+  {
+    id: 1,
+    userId: 1,
+    questionId: 2,
+    answerUserId: 3,
+    score: 5,
+  },
+  {
+    id: 1,
+    userId: 2,
+    questionId: 2,
+    answerUserId: 3,
+    score: 5,
+  },
 ]
 
 export async function getQuestionAnswers(): Promise<QuestionAnswerType[]> {
