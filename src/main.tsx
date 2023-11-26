@@ -13,6 +13,10 @@ export const routes = {
 const router = createBrowserRouter(
   [
     {
+      path: '',
+      element: <MainPage />,
+    },
+    {
       path: routes.root,
       element: <MainPage />,
     },
